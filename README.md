@@ -13,3 +13,17 @@ Preview the gif below to get a quick demo of github.dev in action.
 
 # Why?
 It’s a quick way to edit and navigate code. It's especially useful if you want to edit multiple files at a time or take advantage of all the powerful code editing features of Visual Studio Code when making a quick change. For more information, see our [documentation](https://github.co/codespaces-editor-help).
+docker run -d \
+  --name=chromium \
+  --security-opt seccomp=unconfined `#optional` \
+  -e PUID=1000 \
+  -e PGID=1000 \
+  -e TZ=Etc/UTC \
+  -e CHROME_CLI=https://www.linuxserver.io/ `#optional` \
+  -e TITLE=sabamedia\
+  -p 3000:3000 \
+  -p 3001:3001 \
+  -v /path/to/config:/config \
+  --shm-size="1gb" \
+  --restart unless-stopped \
+  lscr.io/linuxserver/chromium:latest
